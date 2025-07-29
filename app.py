@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import firebase_admin
 ## from firebase_admin import firestore
+from firebase_admin import firebase_admin
 from google.cloud import firestore
 
 app = Flask(__name__)
