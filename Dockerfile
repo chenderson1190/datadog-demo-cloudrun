@@ -4,4 +4,4 @@ WORKDIR /usr/src/app
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 COPY . ./
-CMD ["ddtrace-run", "python", "app.py"]
+CMD ["ddtrace-run", "flask", "run"]
