@@ -1,7 +1,10 @@
 from flask import Flask, render_template
+import firebase_admin
+from firebase_admin import firestore
 
 app = Flask(__name__)
-
+firestore_app = firebase_admin.initialize_app()
+db = firestore.client()
 
 @app.route("/")
 def index():
@@ -9,7 +12,8 @@ def index():
 
 @app.route("/library")
 def library():
-    return render_template('library.html')
+    books = db.collection("books").get()
+    return render_template('library.html', library_list=books)
 
 
 if __name__ == "__main__":
