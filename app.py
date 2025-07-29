@@ -1,7 +1,3 @@
-import signal
-import sys
-from types import FrameType
-
 from flask import Flask
 
 app = Flask(__name__)
