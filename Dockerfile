@@ -11,5 +11,4 @@ ENV DD_SITE=datadoghq.com
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 COPY . ./
-ENTRYPOINT ["/app/datadog-init"]
-CMD ["/dd_tracer/python/bin/ddtrace-run", "python", "app.py"]
+CMD ["/app/datadog-init", "/dd_tracer/python/bin/ddtrace-run", "python", "app.py"]
