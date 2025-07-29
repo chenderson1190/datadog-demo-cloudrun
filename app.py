@@ -9,7 +9,7 @@ def index():
 
 @app.route("/library")
 def library():
-    return 'Library Page'
+    return render_template('library.html')
 
 
 if __name__ == "__main__":
