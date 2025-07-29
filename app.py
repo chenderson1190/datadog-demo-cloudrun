@@ -1,11 +1,15 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
 @app.route("/")
-def hello() -> str:
-    return "Hello, World!"
+def index():
+    return render_template('index.html')
+
+@app.route("/library")
+def library():
+    return 'Library Page'
 
 
 if __name__ == "__main__":
