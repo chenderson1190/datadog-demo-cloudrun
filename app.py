@@ -4,7 +4,7 @@ from firebase_admin import firestore
 
 app = Flask(__name__)
 firestore_app = firebase_admin.initialize_app()
-db = firestore.client()
+db = firestore.client(database="datadog-demo-db")
 
 @app.route("/")
 def index():
