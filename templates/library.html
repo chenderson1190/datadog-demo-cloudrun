@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+        <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Book Name</th>
+                        <th scope="col">Author</th>
+                    </tr>
+                </thead>
+                 {% if library_list %}
+                    {% for book in library_list %}
+                <tbody>
+                    <tr>
+                        <td>{{book.to_dict()["book_name"]}}</td>
+                        <td>{{book.to_dict()["author"]}}</td>
+                    {% endfor %}
+                    </tr>
+                </tbody>
+        </table>
+        {% else %}
+
+            <p> No Books Found! </p>
+        {% endif %}
+    {% endblock %}
+</body>
+</html>
