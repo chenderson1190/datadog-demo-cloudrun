@@ -3,6 +3,7 @@ from wtforms import Form, StringField
 import google.cloud.logging as logging
 import firebase_admin
 from google.cloud import firestore
+import logging as log
 
 app = Flask(__name__)
 firestore_app = firebase_admin.initialize_app()
