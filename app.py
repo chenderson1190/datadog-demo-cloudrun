@@ -23,7 +23,6 @@ class AddBookForm(Form):
 
 @app.route("/")
 def index():
-    log.info("Index page visited...")
     return render_template('index.html')
 
 @app.route("/library")
@@ -38,7 +37,11 @@ def add_book():
     form = AddBookForm(request.form)
     if request.method == 'POST' and form.validate():
         newBook = {"book_name": form.book_name.data, "author": form.author.data}
-        db.collection("books").add(newBook)
+        log.info("Adding new book with book_name: " + form.book_name.data + " and author: " + form.author.data)
+        try:
+            db.collection("books").add(newBook)
+        except Exception as err:
+            log.ERROR(err)
         return redirect(url_for('index'))
     return render_template('add_book.html', form=form)
 
