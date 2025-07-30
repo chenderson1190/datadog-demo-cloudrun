@@ -39,7 +39,7 @@ def add_book():
     form = AddBookForm(request.form)
     if request.method == 'POST' and form.validate():
         book = Book(form.book_name, form.author)
-        db.add(book)
+        db.collection("books").add(book)
         return redirect(url_for('index'))
     return render_template('add_book.html', form=form)
 
