@@ -1,5 +1,6 @@
 from flask import Flask, render_template
-import logging
+import logging as log
+import google.cloud.logging as logging
 import firebase_admin
 from google.cloud import firestore
 import ddtrace
@@ -8,20 +9,19 @@ app = Flask(__name__)
 firestore_app = firebase_admin.initialize_app()
 db = firestore.Client(database="datadog-demo-db")
 
-logger = logging.getLogger('library_logger')
-logging.basicConfig(filename="/shared-volume/logs/library.log")
-logger.setLevel(logging.INFO)
+logging_client = logging.Client()
+logging_client.setup_logging()
 
 @app.route("/")
 def index():
-    logger.info("Index page visited...")
+    log.info("Index page visited...")
     return render_template('index.html')
 
 @app.route("/library")
 def library():
-    logger.info("Retrieving books from database...")
+    log.info("Retrieving books from database...")
     books = db.collection("books").get()
-    logger.info("Books retrieved.")
+    log.info("Books retrieved.")
     return render_template('library.html', library_list=books)
 
 
