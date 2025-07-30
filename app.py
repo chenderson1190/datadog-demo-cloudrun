@@ -1,21 +1,15 @@
 from flask import Flask, render_template, request
-from flask_navigation import Navigation
 from wtforms import Form, StringField
 import google.cloud.logging as logging
 import firebase_admin
 from google.cloud import firestore
 
 app = Flask(__name__)
-nav = Navigation(app)
 firestore_app = firebase_admin.initialize_app()
 db = firestore.Client(database="datadog-demo-db")
 
 logging_client = logging.Client()
 logging_client.setup_logging()
-
-nav.Bar('top' [
-    nav.Item('Index', 'Library', 'Add a Book')
-])
 
 class Book:
     def __init__(self, book_name, author):

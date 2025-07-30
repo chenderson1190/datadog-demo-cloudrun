@@ -7,11 +7,9 @@
     <title>Document</title>
 </head>
     <ul>
-        {% for item in nav.top %}
-        <li class="{{ 'active' if item.is_active else '' }}">
-            <a href="{{ item.url }}">{{ item.label }}</a>
-        </li>
-        {% endfor %}
+        <a href="{{ url_for('index') }}">Index</a>
+        <a href="{{ url_for('add_book') }}">Add a Book</a>
+        <a href="{{ url_for('library') }}">View Library</a>
     </ul>
         <h1>Welcome to the Library!</h1>
     <p>A simple application to showcase what's possible when Google Cloud and Datadog work together.</p>
