@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from wtforms import Form, BooleanField, StringField, PasswordField, validators
 import logging as log
 import google.cloud.logging as logging
 import firebase_admin
@@ -12,6 +13,15 @@ db = firestore.Client(database="datadog-demo-db")
 logging_client = logging.Client()
 logging_client.setup_logging()
 
+class Book:
+    def __init__(self, book_name, author):
+        self.book_name = book_name
+        self.author = author
+
+class AddBookForm(Form):
+    book_name = StringField("Book Name")
+    author = StringField('Author')
+
 @app.route("/")
 def index():
     log.info("Index page visited...")
@@ -23,6 +33,15 @@ def library():
     books = db.collection("books").get()
     log.info("Books retrieved.")
     return render_template('library.html', library_list=books)
+
+@app.route("/add_book", methods=['GET', 'POST'])
+def add_book():
+    form = AddBookForm(request.form)
+    if request.method == 'POST' and form.validate():
+        book = Book(form.book_name, form.author)
+        db.add(book)
+        return redirect(url_for('index'))
+    return render_template('add_book.html', form=form)
 
 
 if __name__ == "__main__":

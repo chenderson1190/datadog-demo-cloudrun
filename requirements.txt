@@ -11,3 +11,4 @@ ddtrace==3.11.1
 firebase-admin==7.0.0
 
 google-cloud-logging==3.12.1
+wtforms==3.2.1
