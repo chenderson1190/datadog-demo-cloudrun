@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from wtforms import Form, StringField
 import google.cloud.logging as logging
 import firebase_admin
