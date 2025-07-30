@@ -37,7 +37,7 @@ def library():
 def add_book():
     form = AddBookForm(request.form)
     if request.method == 'POST' and form.validate():
-        newBook = {"book_name": str(form.book_name), "author": str(form.author)}
+        newBook = {"book_name": form.book_name.data, "author": form.author.data}
         db.collection("books").add(newBook)
         return redirect(url_for('index'))
     return render_template('add_book.html', form=form)
