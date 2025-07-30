@@ -6,6 +6,13 @@
     <title>Document</title>
 </head>
 <body>
+    <ul>
+    {% for item in nav.top %}
+    <li class="{{ 'active' if item.is_active else '' }}">
+        <a href="{{ item.url }}">{{ item.label }}</a>
+    </li>
+    {% endfor %}
+    </ul>
     {% block content %}
         <table>
                 <thead>
