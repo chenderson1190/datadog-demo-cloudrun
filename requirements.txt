@@ -9,3 +9,5 @@ google-auth==2.40.3
 ddtrace==3.11.1
 
 firebase-admin==7.0.0
+
+google-cloud-logging==3.12.1
